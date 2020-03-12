@@ -7,7 +7,7 @@ public class MatrixHelper {
         double[][] res = new double[a.length][a.length];
 
 
-        new Thread(new Runnable() {
+        Thread one = new Thread(new Runnable() {
             @Override
             public void run() {
 
@@ -21,11 +21,12 @@ public class MatrixHelper {
 
                 }
             }
-        }).start();
+        });
 
-        new Thread(new Runnable() {
+        Thread second = new Thread(new Runnable() {
             @Override
             public void run() {
+
                 for (int i = 1; i < a.length; i+=2){
                     for (int j = 0; j < a.length; j++){
                         res[i][j] = 0;
@@ -36,10 +37,14 @@ public class MatrixHelper {
 
                 }
             }
-        }).start();
+        });
+        one.start();
+        second.start();
 
 
-    Thread.sleep(1000);
+        while (one.isAlive() || second.isAlive()){
+
+        }
 
         return res;
     }

@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
-        double[][] a = MatrixHelper.generateMatrix(10);
-        double[][] b = MatrixHelper.generateMatrix(10);
+        double[][] a = MatrixHelper.generateMatrix(500);
+        double[][] b = MatrixHelper.generateMatrix(500);
 
         double[][] c = MatrixHelper.calculateInTwoTheads(a,b);
 
