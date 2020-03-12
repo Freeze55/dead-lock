@@ -1,6 +1,21 @@
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+        double[][] a = MatrixHelper.generateMatrix(10);
+        double[][] b = MatrixHelper.generateMatrix(10);
+
+        double[][] c = MatrixHelper.calculateInTwoTheads(a,b);
+
+        MatrixHelper.printMatrix(a);
+
+        MatrixHelper.printMatrix(b);
+
+        MatrixHelper.printMatrix(c);
+
+    }
+
+    public static void deadLock(){
 
         final String s1 = "lock";
         final String s2 = "lock2";
