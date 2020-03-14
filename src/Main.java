@@ -1,19 +1,26 @@
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
-
+    public static void main(String[] args)  {
+/*
         double[][] a = MatrixHelper.generateMatrix(500);
         double[][] b = MatrixHelper.generateMatrix(500);
 
-        double[][] c = MatrixHelper.calculateInTwoTheads(a,b);
+        double[][] c = MatrixHelper.calculateInTwoThreads(a,b);
+        */
 
-        MatrixHelper.printMatrix(a);
+        WatermarkService watermarkService = new WatermarkService();
 
-        MatrixHelper.printMatrix(b);
 
-        MatrixHelper.printMatrix(c);
+
+        watermarkService.processImage();
+
 
     }
+
+
+
+
+
 
     public static void deadLock(){
 

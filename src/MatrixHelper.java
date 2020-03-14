@@ -2,49 +2,46 @@ public class MatrixHelper {
 
 
 
-    public synchronized  static double[][] calculateInTwoTheads(double[][] a, double[][] b) throws InterruptedException {
+    public synchronized  static double[][] calculateInTwoThreads(double[][] a, double[][] b) throws InterruptedException {
 
         double[][] res = new double[a.length][a.length];
+        synchronized (res) {
 
+            Thread one = new Thread(new Runnable() {
+                @Override
+                public void run() {
 
-        Thread one = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                for (int i = 0; i < a.length; i++){
-                    for (int j = 0; j < a.length; j++){
-                        res[i][j] = 0;
-                        for (int k=0; k<a.length; k++){
-                            res[i][j] =res[i][j] + a[i][k]*b[k][j];
+                    for (int i = 0; i < a.length; i++) {
+                        for (int j = 0; j < a.length; j++) {
+                            res[i][j] = 0;
+                            for (int k = 0; k < a.length; k++) {
+                                res[i][j] = res[i][j] + a[i][k] * b[k][j];
+                            }
                         }
+
                     }
-
                 }
-            }
-        });
+            });
 
-        Thread second = new Thread(new Runnable() {
-            @Override
-            public void run() {
+            Thread second = new Thread(new Runnable() {
+                @Override
+                public void run() {
 
-                for (int i = 1; i < a.length; i+=2){
-                    for (int j = 0; j < a.length; j++){
-                        res[i][j] = 0;
-                        for (int k=0; k<a.length; k++){
-                            res[i][j] =res[i][j] + a[i][k]*b[k][j];
+                    for (int i = 1; i < a.length; i += 2) {
+                        for (int j = 0; j < a.length; j++) {
+                            res[i][j] = 0;
+                            for (int k = 0; k < a.length; k++) {
+                                res[i][j] = res[i][j] + a[i][k] * b[k][j];
+                            }
                         }
+
                     }
-
                 }
-            }
-        });
-        one.start();
-        second.start();
-
-
-        while (one.isAlive() || second.isAlive()){
-
+            });
+            one.start();
+            second.start();
         }
+
 
         return res;
     }
